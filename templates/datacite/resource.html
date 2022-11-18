@@ -14,20 +14,20 @@
             <dl class="row">
                 <dt class="col-sm-2 offset-sm-1 text-right">HTML:</dt>
                 <dd class="col-sm-8">
-                    <a href="{% url 'resource' resource.identifier.identifier %}">
-                        {{request.build_absolute_uri}}{% url 'resource' resource.identifier.identifier %}
+                    <a href="{% url 'datacite:resource' resource.identifier.identifier %}">
+                        {{request.build_absolute_uri}}{% url 'datacite:resource' resource.identifier.identifier %}
                     </a>
                 </dd>
                 <dt class="col-sm-2 offset-sm-1 text-right">XML:</dt>
                 <dd class="col-sm-8">
-                    <a href="{% url 'resource_xml' resource.identifier.identifier %}">
-                        {{request.build_absolute_uri}}{% url 'resource_xml' resource.identifier.identifier %}
+                    <a href="{% url 'datacite:resource_xml' resource.identifier.identifier %}">
+                        {{request.build_absolute_uri}}{% url 'datacite:resource_xml' resource.identifier.identifier %}
                     </a>
                 </dd>
                 <dt class="col-sm-2 offset-sm-1 text-right">JSON:</dt>
                 <dd class="col-sm-8">
-                    <a href="{% url 'resource_json' resource.identifier.identifier %}">
-                        {{request.build_absolute_uri}}{% url 'resource_json' resource.identifier.identifier %}
+                    <a href="{% url 'datacite:resource_json' resource.identifier.identifier %}">
+                        {{request.build_absolute_uri}}{% url 'datacite:resource_json' resource.identifier.identifier %}
                     </a>
                 </dd>
             </dl>
