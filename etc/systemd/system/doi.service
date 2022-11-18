@@ -1,0 +1,36 @@
+[Unit]
+Description=isimip-doi gunicorn daemon
+After=network.target
+
+[Service]
+User=isimip
+Group=isimip
+
+WorkingDirectory=/srv/www/doi
+EnvironmentFile=/srv/www/doi/.env
+
+Environment=GUNICORN_BIN=env/bin/gunicorn
+Environment=GUNICORN_PORT=9002
+Environment=GUNICORN_WORKER=1
+Environment=GUNICORN_TIMEOUT=30
+Environment=GUNICORN_PID_FILE=/run/gunicorn/doi/doi.pid
+Environment=GUNICORN_ACCESS_LOG_FILE=/var/log/gunicorn/doi/access.log
+Environment=GUNICORN_ERROR_LOG_FILE=/var/log/gunicorn/doi/error.log
+Environment=GUNICORN_SCRIPT_NAME=/doi
+
+ExecStart=/bin/sh -c '${GUNICORN_BIN} \
+  --workers ${GUNICORN_WORKER} \
+  --pid ${GUNICORN_PID_FILE} \
+  --bind localhost:${GUNICORN_PORT} \
+  --timeout ${GUNICORN_TIMEOUT} \
+  --access-logfile ${GUNICORN_ACCESS_LOG_FILE} \
+  --error-logfile ${GUNICORN_ERROR_LOG_FILE} \
+  --env SCRIPT_NAME=${GUNICORN_SCRIPT_NAME} \
+  config.wsgi:application'
+
+ExecReload=/bin/sh -c '/usr/bin/pkill -HUP -F ${GUNICORN_PID_FILE}'
+
+ExecStop=/bin/sh -c '/usr/bin/pkill -TERM -F ${GUNICORN_PID_FILE}'
+
+[Install]
+WantedBy=multi-user.target
