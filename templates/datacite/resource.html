@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block main %}
+
+<div class="container">
+    <header>
+        <h1>ISIMIP DOI Draft</h1>
+    </header>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">HTML:</dt>
+                <dd class="col-sm-8">
+                    <a href="{% url 'resource' resource.identifier.identifier %}">
+                        {{request.build_absolute_uri}}{% url 'resource' resource.identifier.identifier %}
+                    </a>
+                </dd>
+                <dt class="col-sm-2 offset-sm-1 text-right">XML:</dt>
+                <dd class="col-sm-8">
+                    <a href="{% url 'resource_xml' resource.identifier.identifier %}">
+                        {{request.build_absolute_uri}}{% url 'resource_xml' resource.identifier.identifier %}
+                    </a>
+                </dd>
+                <dt class="col-sm-2 offset-sm-1 text-right">JSON:</dt>
+                <dd class="col-sm-8">
+                    <a href="{% url 'resource_json' resource.identifier.identifier %}">
+                        {{request.build_absolute_uri}}{% url 'resource_json' resource.identifier.identifier %}
+                    </a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Title:</dt>
+                <dd class="col-sm-8">{{ resource.title }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Identifier:</dt>
+                <dd class="col-sm-8">
+                    {{ resource.identifier }}
+                </dd>
+            </dl>
+            {% if resource.version %}
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Version:</dt>
+                <dd class="col-sm-8">{{ resource.version }}</dd>
+            </dl>
+            {% endif %}
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Creators:</dt>
+                <dd class="col-sm-8">
+                    <table class="table table-bordered table-sm mb-0">
+                        {% for creator in resource.creators.all %}
+                        <tr>
+                            <td>{{ creator }}</td>
+                            <td>
+                            {% for name_identifier in creator.name_identifiers.all %}
+                                {{ name_identifier }}
+                            {% endfor %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </dd>
+            </dl>
+            {% for description in resource.descriptions.all %}
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">{{ description.description_type }}:</dt>
+                <dd class="col-sm-8">
+                {% for paragraph in description.escaped_description_paragraphs %}
+                    <p>{{ paragraph }}</p>
+                {% endfor %}
+                </dd>
+            </dl>
+            {% endfor %}
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Publication year:</dt>
+                <dd class="col-sm-8">{{ resource.publication_year }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Dates:</dt>
+                <dd class="col-sm-8">
+                    <ul class="list-unstyled mb-0">
+                    {% for date in resource.dates.all %}
+                    <li>({{ date.date_type }}) {{ date.date }}</li>
+                    {% endfor %}
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Publisher:</dt>
+                <dd class="col-sm-8">{{ resource.publisher }}</dd>
+            </dl>
+            <dl class="row mb-2">
+                <dt class="col-sm-2 offset-sm-1 text-right">Rights:</dt>
+                <dd class="col-sm-8">
+                    <ul class="list-unstyled mb-0">
+                        {% for rights in resource.rights_list.all %}
+                        <li class="mb-1">
+                            {{ rights.rights_identifier }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="row mb-2">
+                <dt class="col-sm-2 offset-sm-1 text-right">Contributors:</dt>
+                <dd class="col-sm-8">
+                    <table class="table table-bordered table-sm mb-0">
+                        {% for contributor in resource.contributor_set.all %}
+                        <tr>
+                            <td>{{ contributor.name }}</td>
+                            <td>
+                            {% for name_identifier in contributor.name.name_identifiers.all %}
+                                {{ name_identifier }}
+                            {% endfor %}
+                            </td>
+                            <td>{{ contributor.contributor_type }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </dd>
+            </dl>
+            <dl class="row mb-2">
+                <dt class="col-sm-2 offset-sm-1 text-right">Subjects:</dt>
+                <dd class="col-sm-8">
+                    <table class="table table-bordered table-sm mb-0">
+                        {% for subject in resource.subjects.all %}
+                        <tr>
+                            <td>{{ subject.subject }}</td>
+                            <td>{{ subject.value_uri }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </dd>
+            </dl>
+            <dl class="row mb-0">
+                <dt class="col-sm-2 offset-sm-1 text-right">Related identifiers:</dt>
+                <dd class="col-sm-8">
+                    <table class="table table-bordered table-sm mb-0">
+                        {% for related_identifier in resource.relatedidentifier_set.all %}
+                        <tr>
+                            <td>{{ related_identifier.identifier.citation }}</td>
+                            <td>{{ related_identifier.identifier }}</td>
+                            <td>{{ related_identifier.relation_type }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

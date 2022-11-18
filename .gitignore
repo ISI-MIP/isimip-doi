@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+
+*~
+*-
+*.swp
+*.save
+.DS_Store
+
+/static
+/static_root
+/media_root
+/env
+/.env
+/log
