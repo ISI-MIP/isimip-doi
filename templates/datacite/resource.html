@@ -52,9 +52,9 @@
                     <table class="table table-bordered table-sm mb-0">
                         {% for creator in resource.creator_set.all %}
                         <tr>
-                            <td>{{ creator }}</td>
+                            <td>{{ creator.name }}</td>
                             <td>
-                            {% for name_identifier in creator.name_identifiers.all %}
+                            {% for name_identifier in creator.name.name_identifiers.all %}
                                 {{ name_identifier }}
                             {% endfor %}
                             </td>
