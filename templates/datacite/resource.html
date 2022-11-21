@@ -14,21 +14,15 @@
             <dl class="row">
                 <dt class="col-sm-2 offset-sm-1 text-right">HTML:</dt>
                 <dd class="col-sm-8">
-                    <a href="{% url 'datacite:resource' resource.identifier.identifier %}">
-                        {{request.build_absolute_uri}}{% url 'datacite:resource' resource.identifier.identifier %}
-                    </a>
+                    <a href="{{ resource_absolute_uri }}">{{ resource_absolute_uri }}</a>
                 </dd>
                 <dt class="col-sm-2 offset-sm-1 text-right">XML:</dt>
                 <dd class="col-sm-8">
-                    <a href="{% url 'datacite:resource_xml' resource.identifier.identifier %}">
-                        {{request.build_absolute_uri}}{% url 'datacite:resource_xml' resource.identifier.identifier %}
-                    </a>
+                    <a href="{{ resource_xml_absolute_uri }}">{{ resource_xml_absolute_uri }}</a>
                 </dd>
                 <dt class="col-sm-2 offset-sm-1 text-right">JSON:</dt>
                 <dd class="col-sm-8">
-                    <a href="{% url 'datacite:resource_json' resource.identifier.identifier %}">
-                        {{request.build_absolute_uri}}{% url 'datacite:resource_json' resource.identifier.identifier %}
-                    </a>
+                    <a href="{{ resource_json_absolute_uri }}">{{ resource_json_absolute_uri }}</a>
                 </dd>
             </dl>
         </div>
@@ -56,7 +50,7 @@
                 <dt class="col-sm-2 offset-sm-1 text-right">Creators:</dt>
                 <dd class="col-sm-8">
                     <table class="table table-bordered table-sm mb-0">
-                        {% for creator in resource.creators.all %}
+                        {% for creator in resource.creator_set.all %}
                         <tr>
                             <td>{{ creator }}</td>
                             <td>
@@ -103,7 +97,7 @@
                     <ul class="list-unstyled mb-0">
                         {% for rights in resource.rights_list.all %}
                         <li class="mb-1">
-                            {{ rights.rights_identifier }}
+                            {{ rights.rights }}
                         </li>
                         {% endfor %}
                     </ul>
