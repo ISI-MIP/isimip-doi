@@ -52,13 +52,28 @@
                     <table class="table table-bordered table-sm mb-0">
                         {% for creator in resource.creator_set.all %}
                         <tr>
-                            <td>{{ creator.name }}</td>
-                            <td>
+                            <td rowSpan="{{ creator.name.affiliations.count | add:'1' }}"
+                                width="25%">
+                                {{ creator.name }}
+                            </td>
+                            <td colSpan="2">
                             {% for name_identifier in creator.name.name_identifiers.all %}
-                                {{ name_identifier }}
+                                {{ name_identifier.url|urlize }}
                             {% endfor %}
                             </td>
                         </tr>
+                        {% for affiliation in creator.name.affiliations.all %}
+                        <tr>
+                            <td>
+                                {{ affiliation }}
+                            </td>
+                            <td width="25%">
+                                {% for name_identifier in affiliation.name_identifiers.all %}
+                                    {{ name_identifier.url|urlize }}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        {% endfor %}
                         {% endfor %}
                     </table>
                 </dd>
@@ -109,14 +124,30 @@
                     <table class="table table-bordered table-sm mb-0">
                         {% for contributor in resource.contributor_set.all %}
                         <tr>
-                            <td>{{ contributor.name }}</td>
-                            <td>
+                            <td rowSpan="{{ contributor.name.affiliations.count | add:'1' }}"
+                                width="25%">
+                                {{ contributor.name }}
+                                <br />
+                                <i>{{ contributor.contributor_type }}</i>
+                            </td>
+                            <td colSpan="2">
                             {% for name_identifier in contributor.name.name_identifiers.all %}
-                                {{ name_identifier }}
+                                {{ name_identifier.url|urlize }}
                             {% endfor %}
                             </td>
-                            <td>{{ contributor.contributor_type }}</td>
                         </tr>
+                        {% for affiliation in contributor.name.affiliations.all %}
+                        <tr>
+                            <td>
+                                {{ affiliation }}
+                            </td>
+                            <td width="25%">
+                                {% for name_identifier in affiliation.name_identifiers.all %}
+                                    {{ name_identifier.url|urlize }}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        {% endfor %}
                         {% endfor %}
                     </table>
                 </dd>
@@ -140,9 +171,14 @@
                     <table class="table table-bordered table-sm mb-0">
                         {% for related_identifier in resource.relatedidentifier_set.all %}
                         <tr>
-                            <td>{{ related_identifier.identifier.citation }}</td>
-                            <td>{{ related_identifier.identifier }}</td>
-                            <td>{{ related_identifier.relation_type }}</td>
+                            <td>
+                                {{ related_identifier.identifier.citation|urlize }}
+                            </td>
+                            <td width="25%" class="text-break">
+                                {{ related_identifier.relation_type }}
+                                -
+                                {{ related_identifier.identifier|urlize }}
+                            </td>
                         </tr>
                         {% endfor %}
                     </table>
