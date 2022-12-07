@@ -52,28 +52,26 @@
                     <table class="table table-bordered table-sm mb-0">
                         {% for creator in resource.creator_set.all %}
                         <tr>
-                            <td rowSpan="{{ creator.name.affiliations.count | add:'1' }}"
-                                width="25%">
-                                {{ creator.name }}
-                            </td>
-                            <td colSpan="2">
-                            {% for name_identifier in creator.name.name_identifiers.all %}
-                                {{ name_identifier.url|urlize }}
-                            {% endfor %}
-                            </td>
-                        </tr>
-                        {% for affiliation in creator.name.affiliations.all %}
-                        <tr>
                             <td>
+                                {{ creator.name }}
+                                {% for name_identifier in creator.name.name_identifiers.all %}
+                                    <a class="{{ name_identifier.name_identifier_scheme|lower }}-link"
+                                       href="{{ name_identifier.url }}">
+                                        {{ name_identifier.name_identifier }}
+                                    </a>
+                                {% endfor %}
+                                {% for affiliation in creator.name.affiliations.all %}
+                                <br/>
                                 {{ affiliation }}
-                            </td>
-                            <td width="25%">
                                 {% for name_identifier in affiliation.name_identifiers.all %}
-                                    {{ name_identifier.url|urlize }}
+                                    <a class="{{ name_identifier.name_identifier_scheme|lower }}-link"
+                                       href="{{ name_identifier.url }}">
+                                        {{ name_identifier.name_identifier }}
+                                    </a>
+                                {% endfor %}
                                 {% endfor %}
                             </td>
                         </tr>
-                        {% endfor %}
                         {% endfor %}
                     </table>
                 </dd>
@@ -124,30 +122,29 @@
                     <table class="table table-bordered table-sm mb-0">
                         {% for contributor in resource.contributor_set.all %}
                         <tr>
-                            <td rowSpan="{{ contributor.name.affiliations.count | add:'1' }}"
-                                width="25%">
-                                {{ contributor.name }}
-                                <br />
-                                <i>{{ contributor.contributor_type }}</i>
-                            </td>
-                            <td colSpan="2">
-                            {% for name_identifier in contributor.name.name_identifiers.all %}
-                                {{ name_identifier.url|urlize }}
-                            {% endfor %}
-                            </td>
-                        </tr>
-                        {% for affiliation in contributor.name.affiliations.all %}
-                        <tr>
                             <td>
+                                {{ contributor.name }}
+                                {% for name_identifier in contributor.name.name_identifiers.all %}
+                                    <a class="{{ name_identifier.name_identifier_scheme|lower }}-link"
+                                       href="{{ name_identifier.url }}">
+                                        {{ name_identifier.name_identifier }}
+                                    </a>
+                                {% endfor %}
+                                {% for affiliation in contributor.name.affiliations.all %}
+                                <br/>
                                 {{ affiliation }}
-                            </td>
-                            <td width="25%">
                                 {% for name_identifier in affiliation.name_identifiers.all %}
-                                    {{ name_identifier.url|urlize }}
+                                    <a class="{{ name_identifier.name_identifier_scheme|lower }}-link"
+                                       href="{{ name_identifier.url }}">
+                                        {{ name_identifier.name_identifier }}
+                                    </a>
+                                {% endfor %}
                                 {% endfor %}
                             </td>
+                            <td width="20%">
+                                {{ contributor.contributor_type }}
+                            </td>
                         </tr>
-                        {% endfor %}
                         {% endfor %}
                     </table>
                 </dd>
@@ -171,13 +168,14 @@
                     <table class="table table-bordered table-sm mb-0">
                         {% for related_identifier in resource.relatedidentifier_set.all %}
                         <tr>
-                            <td>
-                                {{ related_identifier.identifier.citation|urlize }}
-                            </td>
-                            <td width="25%" class="text-break">
+                            <td width="20%">
                                 {{ related_identifier.relation_type }}
-                                -
-                                {{ related_identifier.identifier|urlize }}
+                            </td>
+                            <td>
+                                <p class="mb-1">
+                                {{ related_identifier.identifier|urlize }} [{{ related_identifier.resource_type_general }}]
+                                </p>
+                                <i>{{ related_identifier.identifier.citation|urlize }}</i>
                             </td>
                         </tr>
                         {% endfor %}
