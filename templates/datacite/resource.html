@@ -31,6 +31,17 @@
     <div class="card">
         <div class="card-body">
             <dl class="row">
+                <dt class="col-sm-2 offset-sm-1 text-right">Citation:</dt>
+                <dd class="col-sm-8">
+                    {{ resource.citation|urlize }}
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
                 <dt class="col-sm-2 offset-sm-1 text-right">Title:</dt>
                 <dd class="col-sm-8">{{ resource.title }}</dd>
             </dl>
