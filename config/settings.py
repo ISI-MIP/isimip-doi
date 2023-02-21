@@ -104,6 +104,8 @@ DOI_PREFIX = '10.48364'
 DATACITE_INCLUDE_CITATION = True
 DATACITE_DEFAULT_PUBLIC = True
 DATACITE_DEFAULT_PUBLISHER = 'ISIMIP Repository'
+DATACITE_DEFAULT_SUBJECT_SCHEME = 'NASA/GCMD Earth Science Keywords'
+DATACITE_DEFAULT_SUBJECT_SCHEME_URI = 'http://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords'
 
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
 LOG_DIR = os.getenv('LOG_DIR')
