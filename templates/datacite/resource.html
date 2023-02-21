@@ -128,6 +128,16 @@
                 </dd>
             </dl>
             <dl class="row mb-2">
+                <dt class="col-sm-2 offset-sm-1 text-right">Geo location:</dt>
+                <dd class="col-sm-8">
+                    {% for geo_location in resource.geo_locations.all %}
+                    {{ geo_location }}
+                    {% if geo_location.geo_location_box %}({{ geo_location.geo_location_box }}){% endif %}
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </dd>
+            </dl>
+            <dl class="row mb-2">
                 <dt class="col-sm-2 offset-sm-1 text-right">Contributors:</dt>
                 <dd class="col-sm-8">
                     <table class="table table-bordered table-sm mb-0">
@@ -173,7 +183,7 @@
                     </table>
                 </dd>
             </dl>
-            <dl class="row mb-0">
+            <dl class="row mb-2">
                 <dt class="col-sm-2 offset-sm-1 text-right">Related identifiers:</dt>
                 <dd class="col-sm-8">
                     <table class="table table-bordered table-sm mb-0">
