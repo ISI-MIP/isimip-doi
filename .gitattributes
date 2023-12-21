@@ -1,0 +1,2 @@
+# encrypt these files
+config/settings/environments/production.py filter=git-crypt diff=git-crypt

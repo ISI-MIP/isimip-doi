@@ -11,5 +11,5 @@ __pycache__/
 /static_root
 /media_root
 /env
-/.env
 /log
+/.gitkey
