@@ -12,15 +12,15 @@
     <div class="card">
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">HTML:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">HTML:</dt>
                 <dd class="col-sm-8">
                     <a href="{{ resource_absolute_uri }}">{{ resource_absolute_uri }}</a>
                 </dd>
-                <dt class="col-sm-2 offset-sm-1 text-right">XML:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">XML:</dt>
                 <dd class="col-sm-8">
                     <a href="{{ resource_xml_absolute_uri }}">{{ resource_xml_absolute_uri }}</a>
                 </dd>
-                <dt class="col-sm-2 offset-sm-1 text-right">JSON:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">JSON:</dt>
                 <dd class="col-sm-8">
                     <a href="{{ resource_json_absolute_uri }}">{{ resource_json_absolute_uri }}</a>
                 </dd>
@@ -31,7 +31,7 @@
     <div class="card">
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Citation:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Citation:</dt>
                 <dd class="col-sm-8">
                     {{ resource.citation|urlize }}
                 </dd>
@@ -42,23 +42,23 @@
     <div class="card">
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Title:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Title:</dt>
                 <dd class="col-sm-8">{{ resource.title }}</dd>
             </dl>
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Identifier:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Identifier:</dt>
                 <dd class="col-sm-8">
                     {{ resource.identifier }}
                 </dd>
             </dl>
             {% if resource.version %}
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Version:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Version:</dt>
                 <dd class="col-sm-8">{{ resource.version }}</dd>
             </dl>
             {% endif %}
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Creators:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Creators:</dt>
                 <dd class="col-sm-8">
                     <table class="table table-bordered table-sm mb-0">
                         {% for creator in resource.creator_set.all %}
@@ -89,7 +89,7 @@
             </dl>
             {% for description in resource.descriptions.all %}
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">{{ description.description_type }}:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">{{ description.description_type }}:</dt>
                 <dd class="col-sm-8">
                 {% for paragraph in description.escaped_description_paragraphs %}
                     <p>{{ paragraph }}</p>
@@ -98,11 +98,11 @@
             </dl>
             {% endfor %}
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Publication year:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Publication year:</dt>
                 <dd class="col-sm-8">{{ resource.publication_year }}</dd>
             </dl>
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Dates:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Dates:</dt>
                 <dd class="col-sm-8">
                     <ul class="list-unstyled mb-0">
                     {% for date in resource.dates.all %}
@@ -112,11 +112,11 @@
                 </dd>
             </dl>
             <dl class="row">
-                <dt class="col-sm-2 offset-sm-1 text-right">Publisher:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Publisher:</dt>
                 <dd class="col-sm-8">{{ resource.publisher }}</dd>
             </dl>
             <dl class="row mb-2">
-                <dt class="col-sm-2 offset-sm-1 text-right">Rights:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Rights:</dt>
                 <dd class="col-sm-8">
                     <ul class="list-unstyled mb-0">
                         {% for rights in resource.rights_list.all %}
@@ -128,7 +128,7 @@
                 </dd>
             </dl>
             <dl class="row mb-2">
-                <dt class="col-sm-2 offset-sm-1 text-right">Geo location:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Geo location:</dt>
                 <dd class="col-sm-8">
                     {% for geo_location in resource.geo_locations.all %}
                     {{ geo_location }}
@@ -138,7 +138,7 @@
                 </dd>
             </dl>
             <dl class="row mb-2">
-                <dt class="col-sm-2 offset-sm-1 text-right">Contributors:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Contributors:</dt>
                 <dd class="col-sm-8">
                     <table class="table table-bordered table-sm mb-0">
                         {% for contributor in resource.contributor_set.all %}
@@ -171,7 +171,7 @@
                 </dd>
             </dl>
             <dl class="row mb-2">
-                <dt class="col-sm-2 offset-sm-1 text-right">Subjects:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Subjects:</dt>
                 <dd class="col-sm-8">
                     <table class="table table-bordered table-sm mb-0">
                         {% for subject in resource.subjects.all %}
@@ -184,7 +184,7 @@
                 </dd>
             </dl>
             <dl class="row mb-2">
-                <dt class="col-sm-2 offset-sm-1 text-right">Related identifiers:</dt>
+                <dt class="col-sm-2 offset-sm-1 text-end">Related identifiers:</dt>
                 <dd class="col-sm-8">
                     <table class="table table-bordered table-sm mb-0">
                         {% for related_identifier in resource.relatedidentifier_set.all %}
