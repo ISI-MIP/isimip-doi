@@ -9,6 +9,7 @@
         <h1>ISIMIP DOI Draft</h1>
     </header>
 
+    {% if request.user.is_staff %}
     <div class="card">
         <div class="card-body">
             <dl class="row">
@@ -24,9 +25,14 @@
                 <dd class="col-sm-8">
                     <a href="{{ resource_json_absolute_uri }}">{{ resource_json_absolute_uri }}</a>
                 </dd>
+                <dt class="col-sm-2 offset-sm-1 text-end">Admin:</dt>
+                <dd class="col-sm-8">
+                    <a href="{{ resource_admin_absolute_uri }}">{{ resource_admin_absolute_uri }}</a>
+                </dd>
             </dl>
         </div>
     </div>
+    {% endif %}
 
     <div class="card">
         <div class="card-body">
