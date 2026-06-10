@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django_extensions',
-    'django_datacite'
+    'django_datacite',
+    'django_vite',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static_root'
 
+DJANGO_VITE = {
+    'default': {
+        'dev_mode': False,
+        'app_client_class': 'config.vite.IsimipDataViteAppClient',
+    },
+}
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
@@ -91,6 +99,9 @@ STATICFILES_FINDERS = (
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
+
+ISIMIP_DATA_MANIFEST_URL = 'https://data.isimip.org/static/_vite/manifest.json'
+ISIMIP_DATA_STATIC_URL = 'https://data.isimip.org/static/'
 
 DOI_PREFIX = '10.48364'
 

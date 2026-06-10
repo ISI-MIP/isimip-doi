@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load django_vite %}<!DOCTYPE html>
 <html>
     <head>
         <title>ISIMIP DOI Draft</title>
@@ -7,6 +7,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <link rel="shortcut icon" href="https://data.isimip.org/static/images/favicons/favicon.ico" type="image/png" />
+
+        {% vite_asset 'isimip_data/core/assets/js/bootstrap.js' %}
+        {% vite_asset 'isimip_data/core/assets/js/base.js' %}
+
         <link rel="stylesheet" href="https://data.isimip.org/static/bootstrap.css" />
         <link rel="stylesheet" href="https://data.isimip.org/static/base.css" />
     </head>
